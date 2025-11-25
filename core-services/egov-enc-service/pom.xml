@@ -18,7 +18,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <lombok.version>1.18.22</lombok.version>
   </properties>
-  <dependencyManagement>
+ <!-- <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>io.opentelemetry</groupId>
@@ -35,7 +35,7 @@
         <scope>import</scope>
       </dependency>
     </dependencies>
-  </dependencyManagement>
+  </dependencyManagement>-->
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
