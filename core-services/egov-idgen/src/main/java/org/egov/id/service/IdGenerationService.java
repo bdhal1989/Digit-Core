@@ -110,22 +110,22 @@ public class IdGenerationService {
 
         List<String> generatedId = new LinkedList<>();
         boolean autoCreateNewSeqFlag = false;
-        if (!StringUtils.isEmpty(idRequest.getIdName()))
+        if (!ObjectUtils.isEmpty(idRequest.getIdName()))
         {
             // If IDName is specified then check if it is defined in MDMS
             String idFormat = getIdFormatFinal(idRequest, requestInfo);
 
             // If the idname is defined then the format should be used
             // else fallback to the format in the request itself
-            if (!StringUtils.isEmpty(idFormat)){
+            if (!ObjectUtils.isEmpty(idFormat)){
                 idRequest.setFormat(idFormat);
                 autoCreateNewSeqFlag=true;
-            }else if(StringUtils.isEmpty(idFormat)){
-                autoCreateNewSeqFlag=false;
+            }else if(ObjectUtils.isEmpty(idFormat)){
+                autoCreateNewSeqFlag=true;
             }
         }
 
-        if (StringUtils.isEmpty(idRequest.getFormat()))
+        if (ObjectUtils.isEmpty(idRequest.getFormat()))
             throw new CustomException("ID_NOT_FOUND",
                     "No Format is available in the MDMS for the given name and tenant");
 
