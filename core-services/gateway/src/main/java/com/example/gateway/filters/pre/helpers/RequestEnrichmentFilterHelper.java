@@ -90,6 +90,10 @@ public class RequestEnrichmentFilterHelper implements RewriteFunction<Map,Map> {
     }
 
     private void addUserInfoHeader(ServerWebExchange exchange , Map body) {
+    	 RequestInfo requestInfo = objectMapper.convertValue(
+    		        body.get(REQUEST_INFO_FIELD_NAME_PASCAL_CASE), RequestInfo.class);
+    	log.info("Final RequestInfo before routing: {}", requestInfo);
+        log.info("UserInfo being forwarded: {}", requestInfo.getUserInfo());
         if (isUserInfoPresent(body) && !isRequestBodyCompatible(exchange.getRequest())) {
             User user = getUser(body);
             exchange.getRequest().mutate().headers(httpHeaders -> {

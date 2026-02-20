@@ -47,7 +47,13 @@ public class AuthPreCheckFilterHelper implements RewriteFunction<Map, Map> {
 
         String authToken;
         String endPointPath = exchange.getRequest().getPath().value();
+        log.info("Incoming request path: {}", endPointPath);
 
+        RequestInfo requestInfo2 = objectMapper.convertValue(
+            body.get(REQUEST_INFO_FIELD_NAME_PASCAL_CASE), RequestInfo.class);
+
+        log.info("Auth Token Received: {}", requestInfo2.getAuthToken());
+        
         if (openEndpointsWhitelist.contains(endPointPath)) {
             exchange.getAttributes().put(AUTH_BOOLEAN_FLAG_NAME, Boolean.FALSE);
             log.info(OPEN_ENDPOINT_MESSAGE, endPointPath);
